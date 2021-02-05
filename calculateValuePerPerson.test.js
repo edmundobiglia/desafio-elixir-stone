@@ -1,6 +1,6 @@
-// Test if function produces expected output when correct input is provided
-
 const calculateValuePerPerson = require("./calculateValuePerPerson");
+
+// TEST IF FUNCTION OUTPUT IS CORRECT WHEN INPUT IS CORRECT
 
 test("Properly distributes values among people and returns a map of values per person", () => {
   const shoppingList = [
@@ -31,9 +31,63 @@ test("Properly distributes values among people and returns a map of values per p
   expect(valuesPerPerson).toEqual(expectedResult);
 });
 
-// TESTS RELATED TO VALIDATION OF SHOPPING LIST DATA
+// TESTS RELATED TO VALIDATION OF EMAILS
 
-// Test if error is thrown if shopping list is empty
+test("Throws error if no emails are provided", () => {
+  const shoppingList = [
+    { description: "apple", quantity: 3, unitPrice: 25 },
+    { description: "milk", quantity: 2, unitPrice: 150 },
+    { description: "bread", quantity: 6, unitPrice: 30 },
+  ];
+
+  const emails = [];
+
+  function testForNoEmails() {
+    calculateValuePerPerson(shoppingList, emails);
+  }
+
+  expect(testForNoEmails).toThrowError(
+    new Error("No emails provided. Please provide at least one email.")
+  );
+});
+
+test("Throws error if one or more emails are not formatted correctly", () => {
+  const shoppingList = [
+    { description: "apple", quantity: 3, unitPrice: 25 },
+    { description: "milk", quantity: 2, unitPrice: 150 },
+    { description: "bread", quantity: 6, unitPrice: 30 },
+  ];
+
+  const emails = ["rachel", "chandler@gmail.com", "phoebe@gmail.com"];
+
+  function testForInvalidEmails() {
+    calculateValuePerPerson(shoppingList, emails);
+  }
+
+  expect(testForInvalidEmails).toThrowError(
+    new Error("Please make sure all emails are valid.")
+  );
+});
+
+test("Throws error if there are duplicate emails", () => {
+  const shoppingList = [
+    { description: "apple", quantity: 3, unitPrice: 25 },
+    { description: "milk", quantity: 2, unitPrice: 150 },
+    { description: "bread", quantity: 6, unitPrice: 30 },
+  ];
+
+  const emails = ["chandler@gmail.com", "chandler@gmail.com", "phoebe@gmail.com"];
+
+  function testForDuplicateEmails() {
+    calculateValuePerPerson(shoppingList, emails);
+  }
+
+  expect(testForDuplicateEmails).toThrowError(
+    new Error("Please make sure there are no duplicate emails.")
+  );
+});
+
+// TESTS RELATED TO VALIDATION OF SHOPPING LIST DATA
 
 test("Throws error if the shopping list is empty", () => {
   const shoppingList = [];
@@ -47,20 +101,18 @@ test("Throws error if the shopping list is empty", () => {
     "ross@gmail.com",
   ];
 
-  function testEmptyShoppingList() {
+  function testForEmptyShoppingList() {
     calculateValuePerPerson(shoppingList, emails);
   }
 
-  expect(testEmptyShoppingList).toThrowError(
+  expect(testForEmptyShoppingList).toThrowError(
     new Error(
       "The shopping list is empty. The shopping list must have at least one item."
     )
   );
 });
 
-// Test if error is thrown if item description is not provided or is not a string
-
-test("Throws error if one or more item description is not provided (empty)", () => {
+test("Throws error if one or more items description is not provided", () => {
   const shoppingList = [
     { description: "", quantity: 3, unitPrice: 25 },
     { description: "milk", quantity: 2, unitPrice: 150 },
@@ -76,13 +128,13 @@ test("Throws error if one or more item description is not provided (empty)", () 
     "ross@gmail.com",
   ];
 
-  function testEmptyShoppingList() {
+  function testForEmptyDescription() {
     calculateValuePerPerson(shoppingList, emails);
   }
 
-  expect(testEmptyShoppingList).toThrowError(
+  expect(testForEmptyDescription).toThrowError(
     new Error(
-      "Invalid data. Each item must have a description, a positive quantity and a positive unit price in cents (integer)."
+      "Invalid data. Each item must have a description, a positive integer quantity and a positive integer unit price in cents."
     )
   );
 });
@@ -103,22 +155,20 @@ test("Throws error if item description is not a string", () => {
     "ross@gmail.com",
   ];
 
-  function testEmptyShoppingList() {
+  function testForDescriptionNotString() {
     calculateValuePerPerson(shoppingList, emails);
   }
 
-  expect(testEmptyShoppingList).toThrowError(
+  expect(testForDescriptionNotString).toThrowError(
     new Error(
-      "Invalid data. Each item must have a description, a positive quantity and a positive unit price in cents (integer)."
+      "Invalid data. Each item must have a description, a positive integer quantity and a positive integer unit price in cents."
     )
   );
 });
 
-// Test if error is thrown if item quantity is not a number or is not a positive integer
-
 test("Throws error if item quantity is negative", () => {
   const shoppingList = [
-    { description: "", quantity: -3, unitPrice: 25 },
+    { description: "appple", quantity: -3, unitPrice: 25 },
     { description: "milk", quantity: 2, unitPrice: 150 },
     { description: "bread", quantity: 6, unitPrice: 30 },
   ];
@@ -132,20 +182,20 @@ test("Throws error if item quantity is negative", () => {
     "ross@gmail.com",
   ];
 
-  function testEmptyShoppingList() {
+  function testForNegativeQuantity() {
     calculateValuePerPerson(shoppingList, emails);
   }
 
-  expect(testEmptyShoppingList).toThrowError(
+  expect(testForNegativeQuantity).toThrowError(
     new Error(
-      "Invalid data. Each item must have a description, a positive quantity and a positive unit price in cents (integer)."
+      "Invalid data. Each item must have a description, a positive integer quantity and a positive integer unit price in cents."
     )
   );
 });
 
 test("Throws error if item quantity is not a number", () => {
   const shoppingList = [
-    { description: "", quantity: "3", unitPrice: 25 },
+    { description: "apple", quantity: "3", unitPrice: 25 },
     { description: "milk", quantity: 2, unitPrice: 150 },
     { description: "bread", quantity: 6, unitPrice: 30 },
   ];
@@ -159,20 +209,20 @@ test("Throws error if item quantity is not a number", () => {
     "ross@gmail.com",
   ];
 
-  function testEmptyShoppingList() {
+  function testForQuantityNotNumber() {
     calculateValuePerPerson(shoppingList, emails);
   }
 
-  expect(testEmptyShoppingList).toThrowError(
+  expect(testForQuantityNotNumber).toThrowError(
     new Error(
-      "Invalid data. Each item must have a description, a positive quantity and a positive unit price in cents (integer)."
+      "Invalid data. Each item must have a description, a positive integer quantity and a positive integer unit price in cents."
     )
   );
 });
 
-test("Throws error if item quantity is not a positive integer", () => {
+test("Throws error if item quantity is not an integer", () => {
   const shoppingList = [
-    { description: "", quantity: 3.5, unitPrice: 25 },
+    { description: "apple", quantity: 3.5, unitPrice: 25 },
     { description: "milk", quantity: 2, unitPrice: 150 },
     { description: "bread", quantity: 6, unitPrice: 30 },
   ];
@@ -186,22 +236,20 @@ test("Throws error if item quantity is not a positive integer", () => {
     "ross@gmail.com",
   ];
 
-  function testEmptyShoppingList() {
+  function testForQuantityNotInteger() {
     calculateValuePerPerson(shoppingList, emails);
   }
 
-  expect(testEmptyShoppingList).toThrowError(
+  expect(testForQuantityNotInteger).toThrowError(
     new Error(
-      "Invalid data. Each item must have a description, a positive quantity and a positive unit price in cents (integer)."
+      "Invalid data. Each item must have a description, a positive integer quantity and a positive integer unit price in cents."
     )
   );
 });
-
-// Test if error is thrown if item unit price is not a number or is not a positive integer
 
 test("Throws error if item unit price is negative", () => {
   const shoppingList = [
-    { description: "", quantity: 3, unitPrice: -25 },
+    { description: "apple", quantity: 3, unitPrice: -25 },
     { description: "milk", quantity: 2, unitPrice: 150 },
     { description: "bread", quantity: 6, unitPrice: 30 },
   ];
@@ -215,20 +263,20 @@ test("Throws error if item unit price is negative", () => {
     "ross@gmail.com",
   ];
 
-  function testEmptyShoppingList() {
+  function testForNegativePrice() {
     calculateValuePerPerson(shoppingList, emails);
   }
 
-  expect(testEmptyShoppingList).toThrowError(
+  expect(testForNegativePrice).toThrowError(
     new Error(
-      "Invalid data. Each item must have a description, a positive quantity and a positive unit price in cents (integer)."
+      "Invalid data. Each item must have a description, a positive integer quantity and a positive integer unit price in cents."
     )
   );
 });
 
 test("Throws error if item unit price is not a number", () => {
   const shoppingList = [
-    { description: "", quantity: 3, unitPrice: "25" },
+    { description: "apple", quantity: 3, unitPrice: "25" },
     { description: "milk", quantity: 2, unitPrice: 150 },
     { description: "bread", quantity: 6, unitPrice: 30 },
   ];
@@ -242,20 +290,20 @@ test("Throws error if item unit price is not a number", () => {
     "ross@gmail.com",
   ];
 
-  function testEmptyShoppingList() {
+  function testForPriceNotNumber() {
     calculateValuePerPerson(shoppingList, emails);
   }
 
-  expect(testEmptyShoppingList).toThrowError(
+  expect(testForPriceNotNumber).toThrowError(
     new Error(
-      "Invalid data. Each item must have a description, a positive quantity and a positive unit price in cents (integer)."
+      "Invalid data. Each item must have a description, a positive integer quantity and a positive integer unit price in cents."
     )
   );
 });
 
-test("Throws error if item unitPrice is not a positive integer", () => {
+test("Throws error if item unit price is not an integer", () => {
   const shoppingList = [
-    { description: "", quantity: 3, unitPrice: 25.5 },
+    { description: "apple", quantity: 3, unitPrice: 25.5 },
     { description: "milk", quantity: 2, unitPrice: 150 },
     { description: "bread", quantity: 6, unitPrice: 30 },
   ];
@@ -269,13 +317,13 @@ test("Throws error if item unitPrice is not a positive integer", () => {
     "ross@gmail.com",
   ];
 
-  function testEmptyShoppingList() {
+  function testForPriceNotInteger() {
     calculateValuePerPerson(shoppingList, emails);
   }
 
-  expect(testEmptyShoppingList).toThrowError(
+  expect(testForPriceNotInteger).toThrowError(
     new Error(
-      "Invalid data. Each item must have a description, a positive quantity and a positive unit price in cents (integer)."
+      "Invalid data. Each item must have a description, a positive integer quantity and a positive integer unit price in cents."
     )
   );
 });

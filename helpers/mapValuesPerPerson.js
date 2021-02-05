@@ -1,5 +1,5 @@
-function mapValuePerPerson(emailList, values) {
-  const mapOfValuesPerPerson = emailList.reduce((previousMap, email, index) => {
+function mapValuePerPerson(emails, values) {
+  const mapOfValuesPerPerson = emails.reduce((previousMap, email, index) => {
     const updatedMap = previousMap.set(email, values[index]);
 
     return updatedMap;

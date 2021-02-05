@@ -1,14 +1,20 @@
+## Teste Elixir - Stone
+
+Esta é a entrega do teste para o Programa de Formação em Elixir da Stone. O teste foi feito em **JavaScript** com Node.
+
+Seguindo as especificações do teste, criei a função `calculateValuesPerPerson`, que recebe como argumentos uma lista de compras e uma lista de emails, e divide o preço total da lista de compras entre as pessoas na lista de emails.
+
+## Estrutura de arquivos
+
+- O diretório _helpers_ contém várias funções auxiliares responsáveis por validar os dados, distribuir o valor total entre o número de pessoas e gerar o mapa de valores por pessoa.
+- O arquivo _calculateValuePerPerson.js_ na raiz é a função principal que chama todos os helpers.
+- O arquivo _index.js_ na raiz pode ser usado para testar diferentes inputs e ver o resultado no console.
+
 ## Função `calculateValuePerPerson`
 
-A função `calculateValuePerPerson` chama alguns helpers.
+### Argumentos da função
 
-### Testes
-
-Os testes unitários foram feitos com Jest. Para executar os testes, `yarn test`
-
-## Formato do input
-
-O primeiro argumento da função é um **array de objetos** com as propriedades **description**, **quantity** e **unitPrice**:
+O primeiro argumento da função é um **array de objetos**. Cada objeto representa um item da lista de compras e tem as propriedades `description`, `quantity` e `unitPrice`:
 
 ```JS
 const items = [
@@ -18,7 +24,9 @@ const items = [
 ];
 ```
 
-O segundo argumento é um **array de strings** (cada string é um email):
+`description` deve ser uma string e não pode estar vazia, `quantity` deve ser um número inteiro positivo e `unitPrice` também deve ser um inteiro positivo. O array de objetos não pode estar vazio. Se qualquer uma dessas condições não for satisfeita, a função emitirá um erro.
+
+O segundo argumento da função é um **array de strings**. Cada string representa um email.
 
 ```JS
 const emails = [
@@ -28,28 +36,8 @@ const emails = [
 ];
 ```
 
-## Passos da função `calculateValuePerPerson`
+Os emails devem ter o formato de email correto e não deve haver emails repetidos. O array não pode estar vazio. Se qualquer uma dessas condições não for satisfeita, a função emitirá um erro.
 
-### 1. Validação de dados
+## Saída da função
 
-O primeiro passo da função `calculateValuePerPerson` é validar os dados.
-
-```JS
-function calculateValuePerPerson(shoppingList, emailList) {
-  validateEmails(emailList);
-
-  validateData(shoppingList);
-
-  // ...
-```
-
-Para isso, a função chama os helpers:
-
-- `validateEmails`: garante que a lista de emails não está vazia, que não há emails duplicados e que os emails estão no formato correto.
-- `validateShoppingList`: garante que a lista de compras não está vazia e que cada item tem uma descrição, uma quantidade positiva inteira e um valor unitário positivo inteiro.
-
-Se uma das condições não for atendida, um erro é emitido com a expressão `throw`.
-
-### 2. Calcular e distribuir o valor por pessoa (sem deixar resto)
-
-### 3. Gerar o mapa de valores por pessoa e retorná-lo
+## Testes

@@ -1,16 +1,16 @@
 const validateEmails = require("./helpers/validateEmails");
-const validateData = require("./helpers/validateData");
+const validateShoppingList = require("./helpers/validateShoppingList");
 const distributeTotalAmongPeople = require("./helpers/distributeTotalAmongPeople");
 const mapValuesPerPerson = require("./helpers/mapValuesPerPerson");
 
-function calculateValuePerPerson(shoppingList, emailList) {
-  validateEmails(emailList);
+function calculateValuePerPerson(shoppingList, emails) {
+  validateEmails(emails);
 
-  validateData(shoppingList);
+  validateShoppingList(shoppingList);
 
-  const distributedValues = distributeTotalAmongPeople(shoppingList, emailList);
+  const distributedValues = distributeTotalAmongPeople(shoppingList, emails);
 
-  const mapOfValuesPerPerson = mapValuesPerPerson(emailList, distributedValues);
+  const mapOfValuesPerPerson = mapValuesPerPerson(emails, distributedValues);
 
   return mapOfValuesPerPerson;
 }

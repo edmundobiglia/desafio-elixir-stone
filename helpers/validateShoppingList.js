@@ -18,7 +18,7 @@ function validateDataFormat(shoppingList) {
   return isAllDataValid;
 }
 
-function validateData(shoppingList) {
+function validateShoppingList(shoppingList) {
   const shoppingListHasItems = shoppingList.length > 0;
 
   if (!shoppingListHasItems) {
@@ -31,9 +31,9 @@ function validateData(shoppingList) {
 
   if (!isAllDataValid) {
     throw new Error(
-      "Invalid data. Each item must have a description, a positive quantity and a positive unit price in cents (integer)."
+      "Invalid data. Each item must have a description, a positive integer quantity and a positive integer unit price in cents."
     );
   }
 }
 
-module.exports = validateData;
+module.exports = validateShoppingList;

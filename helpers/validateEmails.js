@@ -1,37 +1,37 @@
-function validateEmailsFormat(emailList) {
+function validateEmailsFormat(emails) {
   const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const AreAllEmailsValid = emailList.every((email) => regex.test(email.toLowerCase()));
+  const AreAllEmailsValid = emails.every((email) => regex.test(email.toLowerCase()));
 
   return AreAllEmailsValid;
 }
 
-function validateNoDuplicateEmails(emailList) {
-  const uniqueEmails = [...new Set(emailList)];
+function validateNoDuplicateEmails(emails) {
+  const uniqueEmails = [...new Set(emails)];
 
   const numberOfUniqueEmails = uniqueEmails.length;
 
-  const numberOfAllEmails = emailList.length;
+  const numberOfAllEmails = emails.length;
 
   const areAllEmailsUnique = numberOfAllEmails === numberOfUniqueEmails;
 
   return areAllEmailsUnique;
 }
 
-function validateEmails(emailList) {
-  const emailListHasEmails = emailList.length > 0;
+function validateEmails(emails) {
+  const hasEmails = emails.length > 0;
 
-  if (!emailListHasEmails) {
+  if (!hasEmails) {
     throw new Error("No emails provided. Please provide at least one email.");
   }
 
-  const AreAllEmailsValid = validateEmailsFormat(emailList);
+  const AreAllEmailsValid = validateEmailsFormat(emails);
 
   if (!AreAllEmailsValid) {
     throw new Error("Please make sure all emails are valid.");
   }
 
-  const allEmailsAreUnique = validateNoDuplicateEmails(emailList);
+  const allEmailsAreUnique = validateNoDuplicateEmails(emails);
 
   if (!allEmailsAreUnique) {
     throw new Error("Please make sure there are no duplicate emails.");

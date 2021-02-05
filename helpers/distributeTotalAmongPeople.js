@@ -12,18 +12,16 @@ function calculateShoppingListTotal(shoppingList) {
   return shoppingListTotal;
 }
 
-function distributeTotalAmongPeople(shoppingList, emailList) {
+function distributeTotalAmongPeople(shoppingList, emails) {
   const shoppingListTotal = calculateShoppingListTotal(shoppingList);
 
-  const numberOfPeople = emailList.length;
+  const numberOfPeople = emails.length;
 
-  // Valor por pessoa arredondado para baixo
   const roundedValuePerPerson = Math.floor(shoppingListTotal / numberOfPeople);
 
-  // Resto
   const remainder = shoppingListTotal % numberOfPeople;
 
-  const distributedValues = emailList.map((email, index) => {
+  const distributedValues = emails.map((email, index) => {
     if (index < remainder) {
       return roundedValuePerPerson + 1;
     }
