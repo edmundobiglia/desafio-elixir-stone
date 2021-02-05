@@ -2,7 +2,7 @@
 
 Esta é a entrega do teste para o Programa de Formação em Elixir da Stone. O teste foi feito em **JavaScript** com **Node**.
 
-Seguindo as especificações do teste, criei a função `calculateValuesPerPerson`, que recebe como argumentos uma lista de compras e uma lista de emails, e divide o preço total da lista de compras entre as pessoas da lista de emails.
+Seguindo as especificações do teste, criei a função `calculateValuePerPerson`, que recebe como argumentos uma lista de compras e uma lista de emails, e divide o preço total da lista de compras entre as pessoas da lista de emails.
 
 ## Estrutura de arquivos
 
