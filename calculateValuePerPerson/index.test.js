@@ -1,4 +1,4 @@
-const calculateValuePerPerson = require("./calculateValuePerPerson");
+const calculateValuePerPerson = require("./");
 
 // TEST IF FUNCTION OUTPUT IS CORRECT WHEN INPUT IS CORRECT
 

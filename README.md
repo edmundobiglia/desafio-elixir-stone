@@ -1,17 +1,16 @@
-<h1 align="center"><img src="elixir_stone.png"></h1>
-
 # Teste Elixir - Stone
 
-Esta é a entrega do teste para o Programa de Formação em Elixir da Stone. O teste foi feito em **JavaScript** com Node.
+Esta é a entrega do teste para o Programa de Formação em Elixir da Stone. O teste foi feito em **JavaScript** com **Node**.
 
 Seguindo as especificações do teste, criei a função `calculateValuesPerPerson`, que recebe como argumentos uma lista de compras e uma lista de emails, e divide o preço total da lista de compras entre as pessoas da lista de emails.
 
 ## Estrutura de arquivos
 
-- Diretório **/helpers**: contém várias funções auxiliares responsáveis por: validar os dados, distribuir o valor total entre o número de pessoas e gerar o mapa de valores por pessoa.
-- Arquivo **calculateValuePerPerson.js** na raiz: é a função principal que chama todos os helpers.
-- Arquivo **calculateValuePerPerson.test.js** na raiz: arquivos de testes unitários do Jest.
-- Arquivo **index.js** na raiz: pode ser usado para testar diferentes inputs e ver o resultado no console.
+- Diretório **/calculateValuePerPerson** na raiz: contém todo o código da função `calculateValuePerPerson`, consistindo nos seguintes arquivos:
+- Subdiretório **/calculateValuePerPerson/helpers**: contém várias funções auxiliares responsáveis por: validar os dados, distribuir o valor total entre o número de pessoas e gerar o mapa de valores por pessoa.
+- Arquivo **/calculateValuePerPerson/index.js**: é a função principal que chama todos os helpers.
+- Arquivo **/calculateValuePerPerson/index.test.js**: arquivo de testes unitários do Jest.
+- Arquivo **index.js** na raiz: esse arquivo importa a função `calculateValuePerPerson` e pode ser usado para testar diferentes inputs e ver o resultado no console.
 
 ## Função `calculateValuePerPerson`
 
@@ -27,9 +26,9 @@ const items = [
 ];
 ```
 
-`description` deve ser uma string e não pode estar vazia, `quantity` deve ser um número inteiro positivo e `unitPrice` também deve ser um inteiro positivo. O array de objetos não pode estar vazio. Se qualquer uma dessas condições não for satisfeita, a função emitirá um erro.
+`description` deve ser uma string não vazia, `quantity` deve ser um número inteiro positivo e `unitPrice` também deve ser um inteiro positivo. O array de objetos não pode estar vazio. Se qualquer uma dessas condições não for satisfeita, a função emitirá um erro.
 
-O segundo argumento da função é um **array de strings**. Cada string representa um email.
+O segundo argumento da função é um **array de strings** e cada string representa um email. Exemplo:
 
 ```JS
 const emails = [
@@ -59,18 +58,18 @@ Map {
 }
 ```
 
-**Observação:** Caso sobre um resto após a divisão do total entre as pessoas, esse resto será distribuído entre o máximo possível de pessoas. Por esse motivo, algumas pessoas inevitavelmente terão partes com um centavo a mais.
+**Observação:** Se sobrar um resto após a divisão do total entre as pessoas, esse resto será distribuído entre o máximo possível de pessoas. Por esse motivo, algumas pessoas inevitavelmente terão partes com um centavo a mais.
 
 ## Testes
 
 A biblioteca **Jest** foi usada para testes, então é necessário instalar essa dependência. Para isso basta executar `npm install` ou `yarn` no console na raiz do projeto. Para rodar os testes, basta executar `npm test` ou `yarn test`.
 
-O arquivo de testes _calculateValuePerPerson.test.js_ se encontra na raiz do projeto e contém 13 testes no total. O primeiro teste verifica se a saída correta (mapa de pessoas e respectivos valores) é gerada quando uma entrada correta é passada à função.
+O arquivo de testes **/calculateValuePerPerson/index.test.js** contém 13 testes no total. O primeiro teste verifica se a saída correta (mapa de pessoas e respectivos valores) é gerada quando uma entrada correta é passada à função.
 
 Os 12 outros testes são relacionados à validação de dados, cobrindo todos os casos possíveis de dados inválidos (lista vazia de compras/emails, quantidades e preços unitários não são inteiros positivos etc.).
 
 ## Considerações finais
 
-- Procurei usar nomes de variáveis autodescritivos para não precisar sobrecarregar o código de comentários explicativos.
+- Procurei usar nomes de variáveis autodescritivos para não ter que sobrecarregar o código de comentários explicativos.
 
-- Muito obrigado pelo tempo dedicado a revisar este teste! 🙂
+- Muito obrigado pelo tempo dedicado à revisão deste teste! 🙂
