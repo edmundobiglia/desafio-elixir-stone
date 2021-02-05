@@ -6,7 +6,7 @@ Seguindo as especificações do teste, criei a função `calculateValuePerPerson
 
 ## Estrutura de arquivos
 
-- Diretório **/calculateValuePerPerson** na raiz: contém todo o código da função `calculateValuePerPerson`.
+- Diretório **/calculateValuePerPerson** na raiz: contém todos os arquivos com o código da função `calculateValuePerPerson`.
 - Subdiretório **/calculateValuePerPerson/helpers**: contém várias funções auxiliares responsáveis por: validar os dados, distribuir o valor total entre o número de pessoas e gerar o mapa de valores por pessoa.
 - Arquivo **/calculateValuePerPerson/index.js**: é a função principal que chama todos os helpers.
 - Arquivo **/calculateValuePerPerson/index.test.js**: arquivo de testes unitários do Jest.
