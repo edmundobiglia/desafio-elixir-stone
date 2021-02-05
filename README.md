@@ -76,6 +76,6 @@ Os 12 outros testes são relacionados à validação de dados, cobrindo todos os
 
 ## Considerações finais
 
-- Procurei usar nomes de variáveis autodescritivos para não ter que sobrecarregar o código de comentários explicativos.
+- Procurei usar nomes de variáveis autodescritivos para não ter que sobrecarregar o código com comentários explicativos.
 
 - Muito obrigado pelo tempo dedicado à revisão deste teste! 🙂
