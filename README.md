@@ -16,7 +16,13 @@ Seguindo as especificações do teste, criei a função `calculateValuesPerPerso
 
 ### Argumentos da função
 
-O primeiro argumento da função é um **array de objetos**. Cada objeto representa um item da lista de compras e tem as propriedades `description`, `quantity` e `unitPrice`. Exemplo:
+A função recebe dois argumentos: `shoppingList` e `emails`.
+
+```JS
+const sharedBill = calculateValuePerPerson(shoppingList, emails);
+```
+
+O argumento `shoppingList`é um **array de objetos**. Cada objeto representa um item da lista de compras e tem as propriedades `description`, `quantity` e `unitPrice`. Exemplo:
 
 ```JS
 const items = [
@@ -28,7 +34,7 @@ const items = [
 
 `description` deve ser uma string não vazia, `quantity` deve ser um número inteiro positivo e `unitPrice` também deve ser um inteiro positivo. O array de objetos não pode estar vazio. Se qualquer uma dessas condições não for satisfeita, a função emitirá um erro.
 
-O segundo argumento da função é um **array de strings** e cada string representa um email. Exemplo:
+O argumento `emails` é um **array de strings** e cada string representa um email. Exemplo:
 
 ```JS
 const emails = [
@@ -41,7 +47,7 @@ const emails = [
 ];
 ```
 
-Os emails devem ter o formato correto e não deve haver emails repetidos. O array não pode estar vazio. Se qualquer uma dessas condições não for satisfeita, a função emitirá um erro.
+Os emails devem ter o formato correto e não podem ser repetidos. O array não pode estar vazio. Se qualquer uma dessas condições não for satisfeita, a função emitirá um erro.
 
 ## Saída da função
 
