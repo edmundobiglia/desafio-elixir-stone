@@ -31,9 +31,9 @@ function validateEmails(emails) {
     throw new Error("Please make sure all emails are valid.");
   }
 
-  const allEmailsAreUnique = validateNoDuplicateEmails(emails);
+  const AreAllEmailsUnique = validateNoDuplicateEmails(emails);
 
-  if (!allEmailsAreUnique) {
+  if (!AreAllEmailsUnique) {
     throw new Error("Please make sure there are no duplicate emails.");
   }
 }
